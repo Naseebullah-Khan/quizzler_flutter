@@ -35,6 +35,7 @@ class _QuizPageState extends State<QuizPage> {
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.',
   ];
+  List<bool> answers = [false, true, true];
   int questionIndex = 0;
 
   @override
@@ -67,7 +68,13 @@ class _QuizPageState extends State<QuizPage> {
               child: Text('True', style: TextStyle(fontSize: 20.0)),
               onPressed: () {
                 setState(() {
-                  questionIndex++;
+                  if (answers[questionIndex] == true) {
+                    questionIndex++;
+                    scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+                  } else {
+                    questionIndex++;
+                    scoreKeeper.add(Icon(Icons.close, color: Colors.red));
+                  }
                 });
               },
             ),
@@ -84,7 +91,13 @@ class _QuizPageState extends State<QuizPage> {
               child: Text('False', style: TextStyle(fontSize: 20.0)),
               onPressed: () {
                 setState(() {
-                  questionIndex++;
+                  if (answers[questionIndex] == false) {
+                    questionIndex++;
+                    scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+                  } else {
+                    questionIndex++;
+                    scoreKeeper.add(Icon(Icons.close, color: Colors.red));
+                  }
                 });
               },
             ),
@@ -95,9 +108,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/
