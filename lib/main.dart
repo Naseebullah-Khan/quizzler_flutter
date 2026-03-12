@@ -37,6 +37,18 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
+  void checkAnswer(bool answer) {
+    setState(() {
+      if (quizBrain.getQuestionAnswer() == answer) {
+        scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+      } else {
+        scoreKeeper.add(Icon(Icons.close, color: Colors.red));
+      }
+
+      quizBrain.getNextQuestion();
+    });
+  }
+
   @override // Polymorphism
   Widget build(BuildContext context) {
     return Column(
@@ -65,17 +77,7 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.green,
               ),
               child: Text('True', style: TextStyle(fontSize: 20.0)),
-              onPressed: () {
-                setState(() {
-                  if (quizBrain.getQuestionAnswer() == true) {
-                    quizBrain.getNextQuestion();
-                    scoreKeeper.add(Icon(Icons.check, color: Colors.green));
-                  } else {
-                    quizBrain.getNextQuestion();
-                    scoreKeeper.add(Icon(Icons.close, color: Colors.red));
-                  }
-                });
-              },
+              onPressed: () => checkAnswer(true),
             ),
           ),
         ),
@@ -88,17 +90,7 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.red,
               ),
               child: Text('False', style: TextStyle(fontSize: 20.0)),
-              onPressed: () {
-                setState(() {
-                  if (quizBrain.getQuestionAnswer() == false) {
-                    quizBrain.getNextQuestion();
-                    scoreKeeper.add(Icon(Icons.check, color: Colors.green));
-                  } else {
-                    quizBrain.getNextQuestion();
-                    scoreKeeper.add(Icon(Icons.close, color: Colors.red));
-                  }
-                });
-              },
+              onPressed: () => checkAnswer(false),
             ),
           ),
         ),
