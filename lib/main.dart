@@ -5,10 +5,11 @@ QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(MyApp());
 
+// Inheritance
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
+  @override // Polymorphism
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -24,17 +25,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// Inheritance
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key});
 
-  @override
+  @override // Polymorphism
   State<QuizPage> createState() => _QuizPageState();
 }
 
+// Inheritance
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  @override
+  @override // Polymorphism
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,10 +92,10 @@ class _QuizPageState extends State<QuizPage> {
                 setState(() {
                   if (quizBrain.getQuestionAnswer() == false) {
                     quizBrain.getNextQuestion();
-                    // scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+                    scoreKeeper.add(Icon(Icons.check, color: Colors.green));
                   } else {
                     quizBrain.getNextQuestion();
-                    // scoreKeeper.add(Icon(Icons.close, color: Colors.red));
+                    scoreKeeper.add(Icon(Icons.close, color: Colors.red));
                   }
                 });
               },
