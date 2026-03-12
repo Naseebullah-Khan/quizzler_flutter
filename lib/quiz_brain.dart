@@ -1,7 +1,9 @@
 import 'package:quizzler_flutter/question.dart';
 
 class QuizBrain {
-  List<Question> questions = [
+  int _questionIndex = 0;
+
+  final List<Question> _questions = [
     Question(
       questionText: 'You can lead a cow down stairs but not up stairs.',
       questionAnswer: false,
@@ -67,4 +69,18 @@ class QuizBrain {
       questionAnswer: true,
     ),
   ];
+
+  void getNextQuestion() {
+    if (_questionIndex < _questions.length - 1) {
+      _questionIndex++;
+    }
+  }
+
+  String getQuestionText() {
+    return _questions[_questionIndex].questionText;
+  }
+
+  bool getQuestionAnswer() {
+    return _questions[_questionIndex].questionAnswer;
+  }
 }
