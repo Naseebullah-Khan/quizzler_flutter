@@ -76,6 +76,10 @@ class QuizBrain {
     }
   }
 
+  bool isFinished() => _questionIndex >= _questions.length - 1;
+
+  void reset() => _questionIndex = 0;
+
   String getQuestionText() {
     return _questions[_questionIndex].questionText;
   }
